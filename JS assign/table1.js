@@ -1,0 +1,35 @@
+let tableElem=document.getElementById('table1id').innerhtml= `<table border=3px>
+                    <tr>
+                        <td>Name</td>
+                        <td>Age</td>
+                        <td>Address</td>
+                        <td>DOB</td>
+                        <td>Email</td>
+                        <td>Gender</td>
+                    </tr> 
+                    <tr>
+                        <td>Thanu</td>
+                        <td>22</td>
+                        <td>Mysore</td>
+                        <td>28-FEB-1997</td>
+                        <td>thanu@gmail.com</td>
+                        <td>Female</td>
+                    </tr> 
+                    <tr>
+                        <td>Tarun</td>
+                        <td>23</td>
+                        <td>Mandya</td>
+                        <td>05-OCT-1997</td>
+                        <td>tarun@gmail.com</td>
+                        <td>Male</td>
+                    </tr>
+                    <tr>
+                         <td>Suma</td>
+                         <td>21</td>
+                         <td>Hassan</td>
+                         <td>03-DEC-1998</td>
+                         <td>suma@gmail.com</td>
+                         <td>Female</td>
+                    </tr>
+                     </table>`
+document.write(tableElem);
