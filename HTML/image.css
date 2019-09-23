@@ -1,0 +1,26 @@
+.img-div{
+          float:left;
+          border:10px solid crimson;
+          border-radius: 50px;
+          overflow: hidden;
+          text-align: center;
+          margin-left: 40px;
+          margin-top: 20px; 
+          background-color: goldenrod;
+}
+        
+img{
+            
+            width:400px;
+            height:250px;
+            transition:all 2s;/*to slow down the speed of zoom */
+}
+/* for zooming the image */
+img:hover{
+     transform:scale(1.2,1.2)/*to zoom image on pointing the cursor*/
+}
+.desc{
+    margin-top: 20px; /* image goes up inorder to display description*/
+    font-family: cursive;
+    font-size: 20px;
+}
