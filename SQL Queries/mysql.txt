@@ -1,0 +1,414 @@
+.			my sql
+			~~~~~
+
+1)how to create database?
+A) create database ustglobal;//craeting database
+=================================================
+2) show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
+| ustglobal          |
++--------------------+
+===============================================
+3)query to use our database?
+A) use ustglobal;
+=======================================
+4)how to see table? 
+a)show tables;
+===========================
+5)write a query to create table?
+A)create table student(id int,name varchar(120),emailid varchar(150));
+====================================================
+6)to see whether the table created or not?
+A) show tables;
++---------------------+
+| Tables_in_ustglobal |
++---------------------+
+| student             |
++---------------------+
+1 row in set (0.00 sec)
+=================================================
+7)how to discribe the table?
+A)mysql> desc student;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| id      | int(11)      | YES  |     | NULL    |       |
+| name    | varchar(120) | YES  |     | NULL    |       |
+| emailid | varchar(150) | YES  |     | NULL    |       |
++---------+--------------+------+-----+---------+-------+
+============================================================
+8)write a query to drop the table?
+A)drop table student;
+9)write a query to drop database?
+A) drop database ustglobal;
+10)query to add column to the table?
+A)
+mysql> alter table student add address varchar(120);
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table student add phone int;
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| id      | int(11)      | YES  |     | NULL    |       |
+| name    | varchar(120) | YES  |     | NULL    |       |
+| email   | varchar(150) | YES  |     | NULL    |       |
+| address | varchar(120) | YES  |     | NULL    |       |
+| phone   | int(11)      | YES  |     | NULL    |       |
++---------+--------------+------+-----+---------+-------+
+===========================================
+11)query to drop column from the table?
+A)mysql> alter table student drop phone;
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+==============================================
+12)query to rename column name?
+A)alter table student change name studentname varchar(120);
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| id          | int(11)      | YES  |     | NULL    |       |
+| studentname | varchar(120) | YES  |     | NULL    |       |
+| email       | varchar(150) | YES  |     | NULL    |       |
+| address     | varchar(120) | YES  |     | NULL    |       |
++-------------+--------------+------+-----+---------+-------+
+==============================================================
+13)query to add column name?
+A)mysql> alter table student add address2 varchar(120);
+========================================================
+13)query to rename column name?
+A)> alter table student change address2 location varchar(120);
+============================================================
+14)query to drop column name?
+A) alter table student drop address;
+=====================================================
+15) query to rename table name?
+A) rename table student to student_info;
+================================================
+16)query to rename database?
+note:--
+====
+	we can not rename the database in the mysql 5.7
+========================================================
+			DDL
+			===
+17)query to insert a data?
+A)insert into student_info(id,studentname,email,location)values(101,'revanth','revanthsteyn@gmail.com','anantapur');
+================================================================================================
+18)query to check the data in the table?
+A) select * from student_info;
++------+-------------+------------------------+-----------+
+| id   | studentname | email                  | location  |
++------+-------------+------------------------+-----------+
+|  101 | revanth     | revanthsteyn@gmail.com | anantapur |
++------+-------------+------------------------+-----------
+====================================================================
+19)query to insert data without column names?
+A)insert into student_info values(102,'harinath','hari123@gmail.com','banglore');
+========================================================================
+20)query to insert data atleast 3 records at a time?
+A) insert into student_info values(103,'loknath','loknath91919@gmail.com','manglore'),(104,'vikram','vikram123@gmail.com','banglore');
+================================================================================================
+21)query to insert only specified values?
+A) insert into student_info(id,location)values(105,'pune');
+=============================================================================
+22)query to update rows of perticular column name?
+A) update student_info set location='banglore';
+Query OK, 3 rows affected (0.01 sec)
+Rows matched: 5  Changed: 3  Warnings: 0
+
+mysql> select * from student_info;
++------+-------------+------------------------+----------+
+| id   | studentname | email                  | location |
++------+-------------+------------------------+----------+
+|  101 | revanth     | revanthsteyn@gmail.com | banglore |
+|  102 | harinath    | hari123@gmail.com      | banglore |
+|  103 | loknath     | loknath91919@gmail.com | banglore |
+|  104 | vikram      | vikram123@gmail.com    | banglore |
+|  105 | NULL        | NULL                   | banglore |
++------+-------------+------------------------+----------+
+==============================================================================
+23)query to delete data from table?
+a)
+mysql> delete from student;
+Query OK, 5 rows affected (0.00 sec)
+
+mysql> select * from student;
+Empty set (0.02 sec)
+=================================================================================
+24)query to insert data into table?
+A)mysql> insert into student values(103,'loknath','loknath91919@gmail.com','manglore'),(104,'vinay','vinay1234@gmail.com','anantapur'),(105,'vikram','vikramsimhareddy@gmail.com','vellore');
+==========================================================================================
+25)query to delete records in the table?
+A) truncate table student;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> select * from student;
+===================================================================================
+26)query to retrive particular column name?
+A) select id,location from student;
++------+-----------+
+| id   | location  |
++------+-----------+
+|  103 | manglore  |
+|  104 | anantapur |                        //projection.
+|  105 | vellore   |
++------+-----------+
+====================================================================================
+				WHERE CLAUSE
+				============
+27)query to get id studentname from student table whose name is vikram?
+A)> select id,studentname from student
+    -> where studentname='vikram';
++------+-------------+
+| id   | studentname |
++------+-------------+
+|  105 | vikram      |
++------+-------------+
+================================================================================
+28)write a query to update vikrams location in the student table?
+A) update student set location='anantapur'
+    -> where studentname='vikram';
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from student;
++------+-------------+----------------------------+-----------+
+| id   | studentname | email                      | location  |
++------+-------------+----------------------------+-----------+
+|  103 | loknath     | loknath91919@gmail.com     | manglore  |
+|  104 | vinay       | vinay1234@gmail.com        | anantapur |
+|  105 | vikram      | vikramsimhareddy@gmail.com | anantapur |
+|  101 | revanth     | revanthsteyn@gmail.com     | banglore  |
+|  102 | harinath    | harinath@gmail.com         | hyderabad |
++------+-------------+----------------------------+-----------+
+=============================================================================
+29)wAQ to delete vinays information from the student table?
+A) delete from student where id=104;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from student;
++------+-------------+----------------------------+-----------+
+| id   | studentname | email                      | location  |
++------+-------------+----------------------------+-----------+
+|  103 | loknath     | loknath91919@gmail.com     | manglore  |
+|  105 | vikram      | vikramsimhareddy@gmail.com | anantapur |
+|  101 | revanth     | revanthsteyn@gmail.com     | banglore  |
+|  102 | harinath    | harinath@gmail.com         | hyderabad |
++------+-------------+----------------------------+-----------+
+===================================================================================
+30)  creating table using constraints?
+A)create table revanth(id int,name varchar(150) not null,emailid varchar(110),primary key(id));
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> desc revanth;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| id      | int(11)      | NO   | PRI | NULL    |       |
+| name    | varchar(150) | NO   |     | NULL    |       |
+| emailid | varchar(110) | YES  |     | NULL    |       |
++---------+--------------+------+-----+---------+-------+  //trying to insert same record.
+
+mysql> insert into revanth values(100487,'revanth','revanthsteyn@gmail.com');
+ERROR 1062 (23000): Duplicate entry '100487' for key 'PRIMARY'
+=========================================================================================
+31)WAQ to insert 
+A) insert into revanth values(123456,'revanth','revanthsteyn@gmail.com');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from revanth;
++--------+---------+------------------------+
+| id     | name    | emailid                |
++--------+---------+------------------------+
+| 100487 | revanth | revanthsteyn@gmail.com |
+| 123456 | revanth | revanthsteyn@gmail.com |
++--------+---------+------------------------+
+===============================================================================================
+32)WAQ to create table employee_info using constraints?
+A)
+mysql> create table employee(id int,name varchar(100) not null,emailid varchar(120),designation varchar(150),mobileno int,Age int,Dateofbirth date not null,dateofjoining date,salary double,deptid int,bloodgroup varchar(100),primary key(id));
+Query OK, 0 rows affected (0.02 sec)
+ desc employee_info;
++---------------+--------------+------+-----+---------+-------+
+| Field         | Type         | Null | Key | Default | Extra |
++---------------+--------------+------+-----+---------+-------+
+| id            | int(11)      | NO   | PRI | NULL    |       |
+| name          | varchar(100) | NO   |     | NULL    |       |
+| emailid       | varchar(120) | YES  |     | NULL    |       |
+| designation   | varchar(150) | YES  |     | NULL    |       |
+| mobileno      | int(11)      | YES  |     | NULL    |       |
+| Age           | int(11)      | YES  |     | NULL    |       |
+| Dateofbirth   | date         | NO   |     | NULL    |       |
+| dateofjoining | date         | YES  |     | NULL    |       |
+| salary        | double       | YES  |     | NULL    |       |
+| deptid        | int(11)      | YES  |     | NULL    |       |
+| bloodgroup    | varchar(100) | YES  |     | NULL    |       |
++---------------+--------------+------+-----+---------+-------+
+===========================================================================================================
+33)create employee_info table with 15 records?
+A) select * from employee_info;
++-----+-----------+-------------------------+--------------------+-----------+------+-------------+---------------+--------+--------+------------+
+| id  | name      | emailid                 | designation        | mobileno  | Age  | Dateofbirth | dateofjoining | salary | deptid | bloodgroup |
++-----+-----------+-------------------------+--------------------+-----------+------+-------------+---------------+--------+--------+------------+
+| 101 | revanth   | revanthsteyn@gmail.com  | software_developer | 863959446 |   21 | 1998-04-03  | 2019-09-24    |  33000 |     10 | AB+        |
+| 102 | vikram    | vikram123@gmail.com     | HR                 | 899876549 |   34 | 1980-09-07  | 2001-11-24    |  90000 |     20 | B+         |
+| 103 | vinay     | vinay124@gmail.com      | clerk              | 789594456 |   21 | 1993-07-07  | 2010-07-14    |  20000 |     30 | AB-        |
+| 104 | prathap   | prathap1764@gmail.com   | salesman           | 789578969 |   26 | 1993-09-21  | 2009-09-24    |  15000 |     40 | B-         |
+| 105 | pramod    | pramod2264@gmail.com    | Analyst            | 789577899 |   26 | 1993-01-29  | 2001-12-20    |  15000 |     20 | B+         |
+| 106 | vikas     | vikas144@gmail.com      | HR                 | 789594456 |   30 | 1988-02-13  | 2004-12-30    |  70000 |     10 | AB+        |
+| 107 | veeresh   | veeresh1111@gmail.com   | tester             | 789578123 |   25 | 1994-09-21  | 2015-10-09    |  23000 |     20 | B-         |
+| 108 | himanshu  | himanshu7264@gmail.com  | Analyst            | 789577345 |   28 | 1991-09-19  | 2006-11-28    |  15000 |     40 | O+         |
+| 109 | vibhav    | vibhav9764@gmail.com    | salesman           | 689578969 |   31 | 1989-11-22  | 2008-09-11    |  15000 |     30 | AB-        |
+| 110 | sheena    | sheena2264@gmail.com    | software_developer | 997577899 |   28 | 1991-05-23  | 2012-11-08    |  75000 |     40 | O+         |
+| 111 | umesh     | umesh9764@gmail.com     | salesman           | 899578969 |   29 | 1990-07-21  | 2006-10-19    |  19000 |     30 | B-         |
+| 112 | prathibha | prathibha2264@gmail.com | software_developer | 667577899 |   25 | 1994-08-24  | 2011-12-15    |  55500 |     10 | A+         |
+| 113 | prathibha | prathibha2264@gmail.com | clerk              | 987577899 |   29 | 1992-05-17  | 2015-03-29    |  25000 |     40 | O+         |
+| 114 | kavitha   | kavitha9764@gmail.com   | tester             | 679578969 |   32 | 1988-04-13  | 2017-10-10    |  35000 |     30 | O-         |
+| 115 | kiranroy  | kiranroy2264@gmail.com  | software_developer | 678543218 |   36 | 1984-08-12  | 2006-10-08    | 157800 |     10 | AB+        |
++-----+-----------+-------------------------+--------------------+-----------+------+-------------+---------------+--------+--------+------------+
+=============================================================================================================================================================    
+34)
+A)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,129 @@
+1.waq to display all the details of the software developer in dept no 30.
+
+mysql> select * from employee_info where designation='software developer' and deptid=30;
+Empty set (0.08 sec)
+***************************************************************************************************************************
+2.waq to display the display the list for all the software developer in dept no 40 and having salary greater than 5000.
+
+mysql> select * from employee_info
+    -> where designation='software developer' and deptid=40 and salary>5000;
+Empty set (0.02 sec)
+***************************************************************************************************************************
+3.waq to display the list for all employeesexcept those who are working in dept no 10 and 20
+
+mysql> select * from employee_info
+    -> where deptid not in(10,20);
++-----+--------+------------------+-------------+----------+------+------------+------------+--------+--------+------------+
+| id  | name   | emailId          | designation | mobileno | age  | dob        | doj        | salary | deptid | bloodgroup |
++-----+--------+------------------+-------------+----------+------+------------+------------+--------+--------+------------+
+| 104 | Banu   | banu@gmail.com   | clerk       | 83363638 |   24 | 1997-12-21 | 2015-03-05 |  10000 |     30 | AB+        |
+| 105 | Akash  | akash@gmail.com  | analyst     | 73363638 |   23 | 1998-08-03 | 2016-05-05 |  15000 |     40 | B+         |
+| 106 | Arav   | arav@gmail.com   | HR          | 73363686 |   25 | 1994-08-03 | 2017-05-05 |  35000 |     30 | AB-        |
+| 108 | Nidhi  | nidhi@gmail.com  | salesman    | 73456792 |   23 | 1996-04-02 | 2017-05-03 |  20000 |     40 | O-         |
+| 112 | Siri   | siri@gmail.com   | HR          | 99642792 |   24 | 1996-08-12 | 2019-11-13 |  25000 |     40 | B+         |
+| 113 | Sanjay | sanjay@gmail.com | salesman    | 99662792 |   23 | 1995-07-12 | 2018-10-13 |  22000 |     30 | A+         |
++-----+--------+------------------+-------------+----------+------+------------+------------+--------+--------+------------+
+6 rows in set (0.06 sec)
+*****************************************************************************************************************************
+4.waq to display the list of employees who are not working as software developer and clerks in dept no 10 and 20 with the salary in the range of 1000 and 3000.
+
+mysql> select * from employee_info
+    -> where designation not in('software developer','clerk') and deptid not in(10,20) and salary between 10000 and 30000;
++-----+--------+------------------+-------------+----------+------+------------+------------+--------+--------+------------+
+| id  | name   | emailId          | designation | mobileno | age  | dob        | doj        | salary | deptid | bloodgroup |
++-----+--------+------------------+-------------+----------+------+------------+------------+--------+--------+------------+
+| 105 | Akash  | akash@gmail.com  | analyst     | 73363638 |   23 | 1998-08-03 | 2016-05-05 |  15000 |     40 | B+         |
+| 108 | Nidhi  | nidhi@gmail.com  | salesman    | 73456792 |   23 | 1996-04-02 | 2017-05-03 |  20000 |     40 | O-         |
+| 112 | Siri   | siri@gmail.com   | HR          | 99642792 |   24 | 1996-08-12 | 2019-11-13 |  25000 |     40 | B+         |
+| 113 | Sanjay | sanjay@gmail.com | salesman    | 99662792 |   23 | 1995-07-12 | 2018-10-13 |  22000 |     30 | A+         |
++-----+--------+------------------+-------------+----------+------+------------+------------+--------+--------+------------+
+4 rows in set (0.02 sec)
+*******************************************************************************************************************************
+5.waq to display the list of employees whose salary is not in the range of 10000 and 20000 in dept no 10,20,30 except all salesmen.
+
+mysql> select * from employee_info
+    -> where salary not between 10000 and 20000 and deptid in (10,20,30) and designation!='salesman';
++-----+---------+-------------------+--------------------+----------+------+------------+------------+--------+--------+------------+
+| id  | name    | emailId           | designation        | mobileno | age  | dob        | doj        | salary | deptid | bloodgroup |
++-----+---------+-------------------+--------------------+----------+------+------------+------------+--------+--------+------------+
+| 101 | Thanu   | thanu@gmail.com   | software developer | 89043638 |   22 | 1997-02-28 | 2019-10-06 |  30000 |     10 | O+         |
+| 102 | Anu     | Anu@gmail.com     | software developer | 94463638 |   21 | 1998-04-28 | 2019-03-08 |  30000 |     10 | O+         |
+| 106 | Arav    | arav@gmail.com    | HR                 | 73363686 |   25 | 1994-08-03 | 2017-05-05 |  35000 |     30 | AB-        |
+| 109 | Namitha | namitha@gmail.com | clerk              | 94556792 |   23 | 1996-10-02 | 2016-08-03 |  25000 |     20 | O+         |
+| 110 | Yashu   | yashu@gmail.com   | tester             | 94456792 |   24 | 1998-04-02 | 2018-05-03 |  25000 |     10 | A+         |
+| 111 | Chinmay | chinmay@gmail.com | analyst            | 97642792 |   21 | 1998-07-14 | 2018-11-03 |  25000 |     20 | O+         |
+| 114 | Varun   | varun@gmail.com   | software developer | 99675792 |   22 | 1997-07-12 | 2019-10-13 |  24000 |     20 | O+         |
++-----+---------+-------------------+--------------------+----------+------+------------+------------+--------+--------+------------+
+7 rows in set (0.00 sec)
+*************************************************************************************************************************************
+6.waq to arrange all the employees by their salary in descending order
+
+mysql> select * from employee_info
+    -> order by salary desc;
++-----+---------+-------------------+--------------------+----------+------+------------+------------+--------+--------+------------+
+| id  | name    | emailId           | designation        | mobileno | age  | dob        | doj        | salary | deptid | bloodgroup |
++-----+---------+-------------------+--------------------+----------+------+------------+------------+--------+--------+------------+
+| 106 | Arav    | arav@gmail.com    | HR                 | 73363686 |   25 | 1994-08-03 | 2017-05-05 |  35000 |     30 | AB-        |
+| 101 | Thanu   | thanu@gmail.com   | software developer | 89043638 |   22 | 1997-02-28 | 2019-10-06 |  30000 |     10 | O+         |
+| 102 | Anu     | Anu@gmail.com     | software developer | 94463638 |   21 | 1998-04-28 | 2019-03-08 |  30000 |     10 | O+         |
+| 112 | Siri    | siri@gmail.com    | HR                 | 99642792 |   24 | 1996-08-12 | 2019-11-13 |  25000 |     40 | B+         |
+| 111 | Chinmay | chinmay@gmail.com | analyst            | 97642792 |   21 | 1998-07-14 | 2018-11-03 |  25000 |     20 | O+         |
+| 110 | Yashu   | yashu@gmail.com   | tester             | 94456792 |   24 | 1998-04-02 | 2018-05-03 |  25000 |     10 | A+         |
+| 109 | Namitha | namitha@gmail.com | clerk              | 94556792 |   23 | 1996-10-02 | 2016-08-03 |  25000 |     20 | O+         |
+| 114 | Varun   | varun@gmail.com   | software developer | 99675792 |   22 | 1997-07-12 | 2019-10-13 |  24000 |     20 | O+         |
+| 113 | Sanjay  | sanjay@gmail.com  | salesman           | 99662792 |   23 | 1995-07-12 | 2018-10-13 |  22000 |     30 | A+         |
+| 108 | Nidhi   | nidhi@gmail.com   | salesman           | 73456792 |   23 | 1996-04-02 | 2017-05-03 |  20000 |     40 | O-         |
+| 103 | Manuoj  | Manoj@gmail.com   | salesman           | 93363638 |   25 | 1994-11-26 | 2017-04-06 |  20000 |     20 | A+         |
+| 115 | Sujith  | sujith@gmail.com  | clerk              | 88675792 |   22 | 1997-09-10 | 2019-12-13 |  20000 |     10 | B+         |
+| 107 | Chaman  | Chaman@gmail.com  | tester             | 73385386 |   22 | 1997-08-03 | 2019-05-03 |  18000 |     10 | B-         |
+| 105 | Akash   | akash@gmail.com   | analyst            | 73363638 |   23 | 1998-08-03 | 2016-05-05 |  15000 |     40 | B+         |
+| 104 | Banu    | banu@gmail.com    | clerk              | 83363638 |   24 | 1997-12-21 | 2015-03-05 |  10000 |     30 | AB+        |
++-----+---------+-------------------+--------------------+----------+------+------------+------------+--------+--------+------------+
+15 rows in set (0.05 sec)
+**************************************************************************************************************************************
+7.waq to display the max salary,min salary and total salary from employee
+
+mysql> select max(salary),min(salary),sum(salary) from employee_info;
++-------------+-------------+-------------+
+| max(salary) | min(salary) | sum(salary) |
++-------------+-------------+-------------+
+|       35000 |       10000 |      344000 |
++-------------+-------------+-------------+
+1 row in set (0.05 sec)
+****************************************************************************************************************************************
+8.waq to display the list of the number of software developers in dept 20.
+
+mysql> select count(*) from employee_info
+    -> where designation='software developer' and deptid=20;
++----------+
+| count(*) |
++----------+
+|        1 |
++----------+
+1 row in set (0.00 sec)
+******************************************************************************************************************************************
+9.waq to display highest and lowest salary earned by salesman
+
+mysql> select max(salary) as max_salary,min(salary) as min_salary from employee_info
+    -> where designation='salesman';
++------------+------------+
+| max_salary | min_salary |
++------------+------------+
+|      22000 |      20000 |
++------------+------------+
+1 row in set (0.00 sec)
+*****************************************************************************************************************************************
+10.waq to display total salary of all the departments.
+
+mysql> select deptid,sum(salary) as total_salary from employee_info
+    -> group by deptid;
++--------+--------------+
+| deptid | total_salary |
++--------+--------------+
+|     10 |       123000 |
+|     20 |        94000 |
+|     30 |        67000 |
+|     40 |        60000 |
++--------+--------------+
+4 rows in set (0.11 sec)
+*****************************************************************************************************************************************

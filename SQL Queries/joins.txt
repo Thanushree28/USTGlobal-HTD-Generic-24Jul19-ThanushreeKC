@@ -1,0 +1,20 @@
+=====================================================================================================================================================================
+                                                    JOINS
+*WAQ to display all the records using cross join?
+mysql> select * from employee_info cross join department_info;
+
+				*******************************************************
+					INNER JOINS
+*WAQ to display 
+mysql> select * from employee_info e inner join department_info d on e.deptId=d.deptId;
+				*******************************************************
+					LEFT OUTER JOINS
+
+*WAQ to display
+mysql> select * from employee_info e left outer join department_info d on e.deptId=d.deptId;
+
+				*******************************************************
+					RIGHT OUTER JOINS
+
+*WAQ to display
+mysql> select * from employee_info e right outer join department_info d on e.deptId=d.deptId;

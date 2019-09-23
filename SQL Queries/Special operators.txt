@@ -1,0 +1,27 @@
+                                                                                                  Special operators
+IN operator:
+
+1.wqtd employees who is working in dept no 10 or 20 or 30.
+mysql> select * from employee_info
+    -> where deptid=10 or deptid=20 or deptid=30;                 //without using in operator
+mysql> select * from employee_info                                   
+    -> where deptid in (10,20,30);                                               //using in operator
++-----+---------+-------------------+--------------------+----------+------+------------+------------+--------+--------+------------+
+| id  | name    | emailId           | designation        | mobileno | age  | dob        | doj        | salary | deptid | bloodgroup |
++-----+---------+-------------------+--------------------+----------+------+------------+------------+--------+--------+------------+
+| 101 | Thanu   | thanu@gmail.com   | software developer | 89043638 |   22 | 1997-02-28 | 2019-10-06 |  30000 |     10 | O+         |
+| 102 | Anu     | Anu@gmail.com     | software developer | 94463638 |   21 | 1998-04-28 | 2019-03-08 |  30000 |     10 | O+         |
+| 103 | Manuoj  | Manoj@gmail.com   | salesman           | 93363638 |   25 | 1994-11-26 | 2017-04-06 |  20000 |     20 | A+         |
+| 104 | Banu    | banu@gmail.com    | clerk              | 83363638 |   24 | 1997-12-21 | 2015-03-05 |  10000 |     30 | AB+        |
+| 106 | Arav    | arav@gmail.com    | HR                 | 73363686 |   25 | 1994-08-03 | 2017-05-05 |  35000 |     30 | AB-        |
+| 107 | Chaman  | Chaman@gmail.com  | tester             | 73385386 |   22 | 1997-08-03 | 2019-05-03 |  18000 |     10 | B-         |
+| 109 | Namitha | namitha@gmail.com | clerk              | 94556792 |   23 | 1996-10-02 | 2016-08-03 |  25000 |     20 | O+         |
+| 110 | Yashu   | yashu@gmail.com   | tester             | 94456792 |   24 | 1998-04-02 | 2018-05-03 |  25000 |     10 | A+         |
+| 111 | Chinmay | chinmay@gmail.com | analyst            | 97642792 |   21 | 1998-07-14 | 2018-11-03 |  25000 |     20 | O+         |
+| 113 | Sanjay  | sanjay@gmail.com  | salesman           | 99662792 |   23 | 1995-07-12 | 2018-10-13 |  22000 |     30 | A+         |
+| 114 | Varun   | varun@gmail.com   | software developer | 99675792 |   22 | 1997-07-12 | 2019-10-13 |  24000 |     20 | O+         |
+| 115 | Sujith  | sujith@gmail.com  | clerk              | 88675792 |   22 | 1997-09-10 | 2019-12-13 |  20000 |     10 | B+         |
++-----+---------+-------------------+--------------------+----------+------+------------+------------+--------+--------+------------+
+12 rows in set (0.00 sec)
+*****************************************************************************************************************************************
+2.

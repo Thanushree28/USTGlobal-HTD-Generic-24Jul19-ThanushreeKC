@@ -1,0 +1,1023 @@
+DML (Data Manipulation Language) COMMANDS - CREATE,  DROP , ALTER , RENAME, TRUNCATE.
+
+1.To display how many number of databases are present.
+
+ mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| company            |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sample             |
+| test               |
+| world              |
++--------------------+
+8 rows in set (0.41 sec)
+************************************************************
+2.To create a new database.
+
+mysql> create database UST_Global;
+Query OK, 1 row affected (0.06 sec)
+************************************************************
+3. To check whether the database created is present or not.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| company            |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sample             |
+| test               |
+| ust_global         |
+| world              |
++--------------------+
+9 rows in set (0.00 sec)
+************************************************************
+4. To use the new database created.
+
+mysql> use UST_Global;
+Database changed
+************************************************************
+5. To display if any tables is present or not. 
+
+mysql> show tables;
+Empty set (0.00 sec)
+*********************************************************
+6. To create a new table into database.
+
+mysql> create table Student(id int,name varchar(120),emailId varchar(150));
+Query OK, 0 rows affected (0.36 sec)
+*********************************************************
+7.To display the table created.
+
+mysql> show tables;
++----------------------+
+| Tables_in_ust_global |
++----------------------+
+| student              |
++----------------------+
+1 row in set (0.00 sec)
+**********************************************************
+8. To display the structure of the created table
+
+mysql> desc Student;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| id      | int(11)      | YES  |     | NULL    |       |
+| name    | varchar(120) | YES  |     | NULL    |       |
+| emailId | varchar(150) | YES  |     | NULL    |       |
++---------+--------------+------+-----+---------+-------+
+3 rows in set (0.16 sec)
+****************************************************************
+9. To delete the table from a database.
+
+mysql> drop table Student;
+Query OK, 0 rows affected (0.16 sec)
+****************************************************************
+10.To display tables after deleting
+
+mysql> show tables;
+Empty set (0.00 sec)
+***************************************************************
+Altering the Table : Modifying the table by adding or deleting columns
+
+11. To add a new column into the table
+
+mysql> alter table Student add column mobileNo int;
+Query OK, 0 rows affected (0.30 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc Student;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| id       | int(11)     | YES  |     | NULL    |       |
+| name     | varchar(20) | YES  |     | NULL    |       |
+| emailId  | varchar(20) | YES  |     | NULL    |       |
+| mobileNo | int(11)     | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+4 rows in set (0.13 sec)
+***************************************************************
+12. To add another new column into the existing table
+
+mysql> alter table Student add address varchar(25);
+Query OK, 0 rows affected (0.22 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc Student;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| id       | int(11)     | YES  |     | NULL    |       |
+| name     | varchar(20) | YES  |     | NULL    |       |
+| emailId  | varchar(20) | YES  |     | NULL    |       |
+| mobileNo | int(11)     | YES  |     | NULL    |       |
+| address  | varchar(25) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+5 rows in set (0.06 sec)
+*************************************************************
+13. To drop a column from the table => column keyword optional
+
+mysql> alter table Student drop column address;
+Query OK, 0 rows affected (0.30 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc Student;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| id       | int(11)     | YES  |     | NULL    |       |
+| name     | varchar(20) | YES  |     | NULL    |       |
+| emailId  | varchar(20) | YES  |     | NULL    |       |
+| mobileNo | int(11)     | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+4 rows in set (0.06 sec)
+*************************************************************
+14. To change the name of the column to a new name
+
+mysql> alter table Student change name StudentName varchar(25);
+Query OK, 0 rows affected (0.28 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc Student;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| id          | int(11)     | YES  |     | NULL    |       |
+| StudentName | varchar(25) | YES  |     | NULL    |       |
+| emailId     | varchar(20) | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+3 rows in set (0.06 sec)
+*************************************************************
+15. To add a new column 'address' into the table
+
+mysql> alter table Student add column address varchar(20);
+Query OK, 0 rows affected (0.31 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc Student;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| id          | int(11)     | YES  |     | NULL    |       |
+| StudentName | varchar(25) | YES  |     | NULL    |       |
+| emailId     | varchar(20) | YES  |     | NULL    |       |
+| address     | varchar(20) | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+4 rows in set (0.06 sec)
+**************************************************************
+16. To change the column name 'address' into 'homeAddress'.
+
+mysql> alter table Student change address homeAddress varchar(20);
+Query OK, 0 rows affected (0.22 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc Student;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| id          | int(11)     | YES  |     | NULL    |       |
+| StudentName | varchar(25) | YES  |     | NULL    |       |
+| emailId     | varchar(20) | YES  |     | NULL    |       |
+| homeAddress | varchar(20) | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+4 rows in set (0.06 sec)
+**************************************************************
+17. To rename the table name into new name.
+
+mysql> rename table Student to student_details;
+Query OK, 0 rows affected (0.25 sec)
+
+mysql> show tables;
++----------------------+
+| Tables_in_ust_global |
++----------------------+
+| student_details      |
++----------------------+
+1 row in set (0.00 sec)
+Note: We cannot rename a database that we are created
+***************************************************************
+DDL (Data Definition Language) COMMANDS - INSERT, DELETE, UPDATE
+
+18. To insert a record into the table(4 ways)
+
+mysql> insert into student_details(id,StudentName,emailId,homeAddress) values(101,'Thanu','thanu@gmail.com','Mysore');
+Query OK, 1 row affected (0.05 sec)
+
+mysql> select * from student_details;
++------+-------------+-----------------+-------------+
+| id   | StudentName | emailId         | homeAddress |
++------+-------------+-----------------+-------------+
+|  100 | xyz         | xyz@gmail.com   | btm         |
+|  101 | Thanu       | thanu@gmail.com | Mysore      |
++------+-------------+-----------------+-------------+
+2 rows in set (0.00 sec)
+****************************************
+mysql> insert into student_details values(102,'anu','anu@gmail.com','mandya');
+Query OK, 1 row affected (0.05 sec)
+
+mysql> select* from student_details;
++------+-------------+-----------------+-------------+
+| id   | StudentName | emailId         | homeAddress |
++------+-------------+-----------------+-------------+
+|  100 | xyz         | xyz@gmail.com   | btm         |
+|  101 | Thanu       | thanu@gmail.com | Mysore      |
+|  102 | anu         | anu@gmail.com   | mandya      |
++------+-------------+-----------------+-------------+
+3 rows in set (0.00 sec)
+****************************************
+
+mysql> insert into student_details values(103,'manu','manu@hotmail.com','tumkur'),(104,'nami','nami@gmail.com','hassan');
+Query OK, 2 rows affected (0.08 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from student_details;
++------+-------------+------------------+-------------+
+| id   | StudentName | emailId          | homeAddress |
++------+-------------+------------------+-------------+
+|  100 | xyz         | xyz@gmail.com    | btm         |
+|  101 | Thanu       | thanu@gmail.com  | Mysore      |
+|  102 | anu         | anu@gmail.com    | mandya      |
+|  103 | manu        | manu@hotmail.com | tumkur      |
+|  104 | nami        | nami@gmail.com   | hassan      |
++------+-------------+------------------+-------------+
+5 rows in set (0.00 sec)
+******************************************
+mysql> insert into student_details(id,StudentName) values(105,'rahul');
+Query OK, 1 row affected (0.05 sec)
+
+mysql> select * from student_details;
++------+-------------+------------------+-------------+
+| id   | StudentName | emailId          | homeAddress |
++------+-------------+------------------+-------------+
+|  100 | xyz         | xyz@gmail.com    | btm         |
+|  101 | Thanu       | thanu@gmail.com  | Mysore      |
+|  102 | anu         | anu@gmail.com    | mandya      |
+|  103 | manu        | manu@hotmail.com | tumkur      |
+|  104 | nami        | nami@gmail.com   | hassan      |
+|  105 | rahul       | NULL             | NULL        |
++------+-------------+------------------+-------------+
+6 rows in set (0.00 sec)
+*********************************************************
+19. To update the homeaddress column with new value 'Mysore'.
+
+mysql> select * from student_details;
++------+-------------+------------------+-------------+
+| id   | StudentName | emailId          | homeAddress |
++------+-------------+------------------+-------------+
+|  100 | xyz         | xyz@gmail.com    | btm         |
+|  101 | Thanu       | thanu@gmail.com  | Mysore      |
+|  102 | anu         | anu@gmail.com    | mandya      |
+|  103 | manu        | manu@hotmail.com | tumkur      |
+|  104 | nami        | nami@gmail.com   | hassan      |
+|  105 | rahul       | NULL             | NULL        |
++------+-------------+------------------+-------------+
+6 rows in set (0.03 sec)
+
+mysql> update student_details set homeAddress='Mysore';
+Query OK, 5 rows affected (0.19 sec)
+Rows matched: 6  Changed: 5  Warnings: 0
+
+mysql> select * from student_details;
++------+-------------+------------------+-------------+
+| id   | StudentName | emailId          | homeAddress |
++------+-------------+------------------+-------------+
+|  100 | xyz         | xyz@gmail.com    | Mysore      |
+|  101 | Thanu       | thanu@gmail.com  | Mysore      |
+|  102 | anu         | anu@gmail.com    | Mysore      |
+|  103 | manu        | manu@hotmail.com | Mysore      |
+|  104 | nami        | nami@gmail.com   | Mysore      |
+|  105 | rahul       | NULL             | Mysore      |
++------+-------------+------------------+-------------+
+6 rows in set (0.00 sec)
+**************************************************
+20. To delete the records from the table
+
+mysql> delete from student_details;
+Query OK, 6 rows affected (0.08 sec)
+
+mysql> select * from student_details;
+Empty set (0.00 sec)
+**************************************************
+21. To insert multiple records into the table at a time.
+
+mysql> insert into student_details values(111,'thanu','thanu@gmail.com','mysore'),(112,'manu','manu@gmail.com','tumkur'),(113,'megha','megha@gmail.com','hassan'),
+    -> (114,'yashu','yashu@gmail.com','mysore'),(115,'chinnu','chinu@gmail.com','madikeri');
+Query OK, 5 rows affected (0.08 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select * from student_details;
++------+-------------+-----------------+-------------+
+| id   | StudentName | emailId         | homeAddress |
++------+-------------+-----------------+-------------+
+|  111 | thanu       | thanu@gmail.com | mysore      |
+|  112 | manu        | manu@gmail.com  | tumkur      |
+|  113 | megha       | megha@gmail.com | hassan      |
+|  114 | yashu       | yashu@gmail.com | mysore      |
+|  115 | chinnu      | chinu@gmail.com | madikeri    |
++------+-------------+-----------------+-------------+
+5 rows in set (0.00 sec)
+**************************************************************************
+Truncate command - It deletes all the records from the table .It is same as Delete command in DDL
+syntax : truncate table student_details;
+
+22. mysql> truncate table student_details;
+Query OK, 0 rows affected (0.31 sec)
+
+mysql> select * from student_details;
+Empty set (0.00 sec)
+**************************************************************************
+DQL(Data Query Language) COMMANDS - SELECT Command 
+with the help of select command we can perform retrieval from the table in three different ways
+   1. projection
+   2.selection
+   3.joins
+
+23. To select particular columns from the table to display.(projection)
+
+mysql> select id,StudentName from student_details;
++------+-------------+
+| id   | StudentName |
++------+-------------+
+|  111 | thanu       |
+|  112 | manu        |
+|  113 | megha       |
+|  114 | yashu       |
+|  115 | chinnu      |
++------+-------------+
+5 rows in set (0.00 sec)
+ **************************************************************************
+24. To select entire row record from the table.(selection)
+
+mysql> select * from student_details;
++------+-------------+-----------------+-------------+
+| id   | StudentName | emailId         | homeAddress |
++------+-------------+-----------------+-------------+
+|  111 | thanu       | thanu@gmail.com | mysore      |
+|  112 | manu        | manu@gmail.com  | tumkur      |
+|  113 | megha       | megha@gmail.com | hassan      |
+|  114 | yashu       | yashu@gmail.com | mysore      |
+|  115 | chinnu      | chinu@gmail.com | madikeri    |
++------+-------------+-----------------+-------------+
+5 rows in set (0.00 sec)
+***************************************************************************
+SQL CLAUSES - WHERE clause
+
+25. write a query to display id and name from the table where name is megha.
+
+mysql> select id,StudentName from student_details where StudentName='megha';
++------+-------------+
+| id   | StudentName |
++------+-------------+
+|  113 | megha       |
++------+-------------+
+1 row in set (0.01 sec)
+***************************************************************************
+26. write a query to update the homeaddress to bangalore where id is 112.
+
+mysql> update student_details set homeAddress='bangalore' where id=112;
+Query OK, 1 row affected (0.08 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from student_details;
++------+-------------+-----------------+-------------+
+| id   | StudentName | emailId         | homeAddress |
++------+-------------+-----------------+-------------+
+|  111 | thanu       | thanu@gmail.com | mysore      |
+|  112 | manu        | manu@gmail.com  | bangalore   |
+|  113 | megha       | megha@gmail.com | hassan      |
+|  114 | yashu       | yashu@gmail.com | mysore      |
+|  115 | chinnu      | chinu@gmail.com | madikeri    |
++------+-------------+-----------------+-------------+
+**************************************************************************
+27. write a query to delete a record from table where id is 113.
+
+mysql> delete from student_details where id=113;
+Query OK, 1 row affected (0.05 sec)
+
+mysql> select * from student_details;
++------+-------------+-----------------+-------------+
+| id   | StudentName | emailId         | homeAddress |
++------+-------------+-----------------+-------------+
+|  111 | thanu       | thanu@gmail.com | mysore      |
+|  112 | manu        | manu@gmail.com  | bangalore   |
+|  114 | yashu       | yashu@gmail.com | mysore      |
+|  115 | chinnu      | chinu@gmail.com | madikeri    |
++------+-------------+-----------------+-------------+
+4 rows in set (0.00 sec)
+******************************************************************************
+SQL CONSTRAINTS - Primary key,foreign key,not null,unique,default,check
+Primar key should be not null and unique.
+
+28. mysql> create table student(id int,name varchar(120) not null,emailId varchar(150),primary key(id));
+Query OK, 0 rows affected (0.16 sec)
+
+mysql> desc student;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| id      | int(11)      | NO   | PRI | 0       |       |
+| name    | varchar(120) | NO   |     | NULL    |       |
+| emailId | varchar(150) | YES  |     | NULL    |       |
++---------+--------------+------+-----+---------+-------+
+3 rows in set (0.06 sec)
+
+mysql> insert into student values(1,'thanu','thanu@gmail.com');
+Query OK, 1 row affected (0.09 sec)
+
+mysql> select * from student;
++----+-------+-----------------+
+| id | name  | emailId         |
++----+-------+-----------------+
+|  1 | thanu | thanu@gmail.com |
++----+-------+-----------------+
+1 row in set (0.00 sec)
+
+mysql> insert into student values(1,'thanu','thanu@gmail.com');
+ERROR 1062 (23000): Duplicate entry '1' for key 'PRIMARY'
+*************************************************************************
+29. create an employee table 
+
+mysql> create table Employee_info(id int,name varchar(50) not null,emailId varchar(50),designation varchar(25),mobileno int,age int,dob date not null,doj date not null,
+    -> salary double,deptid int,bloodgroup varchar(10),primary key(id));
+Query OK, 0 rows affected (0.14 sec)
+
+mysql> desc Employee_info;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| id          | int(11)     | NO   | PRI | 0       |       |
+| name        | varchar(50) | NO   |     | NULL    |       |
+| emailId     | varchar(50) | YES  |     | NULL    |       |
+| designation | varchar(25) | YES  |     | NULL    |       |
+| mobileno    | int(11)     | YES  |     | NULL    |       |
+| age         | int(11)     | YES  |     | NULL    |       |
+| dob         | date        | NO   |     | NULL    |       |
+| doj         | date        | NO   |     | NULL    |       |
+| salary      | double      | YES  |     | NULL    |       |
+| deptid      | int(11)     | YES  |     | NULL    |       |
+| bloodgroup  | varchar(10) | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+11 rows in set (0.06 sec)  
+*******************************************************************************************************
+mysql> insert into employee_info values
+    -> (101,'Thanu','thanu@gmail.com','software developer',8904363815,22,'1997-02-28','2019-10-06',30000,10,'O+'),
+    -> (102,'Nmaitha','namitha@gmail.com','HR',8904363678,23,'1996-06-26','2019-08-08',20000,10,'O-'),
+    -> (103,'Manoj','Manoj@gmail.com','salesman',7865463678,25,'1994-11-26','2016-09-21',25000,20,'O+'),
+    -> (104,'Banu','banu@gmail.com','clerk',83363638,24,'1997-12-21','2015-03-05',10000,30,'AB+'),
+    -> (105,'Akash','akash@gmail.com','analyst',73363638,23,'1998-08-03','2016-05-05',15000,40,'B+'),
+    -> (106,'Arav','arav@gmail.com','HR',73363686,25,'1994-08-03','2017-05-05',35000,30,'AB-'),
+    -> (107,'Chaman','Chaman@gmail.com','tester',73385386,22,'1997-08-03','2019-05-03',18000,10,'B-'),
+    -> (108,'Nidhi','nidhi@gmail.com','salesman',73456792,23,'1996-04-02','2017-05-03',20000,40,'O-'),
+    -> (109,'Namitha','namitha@gmail.com','clerk',94556792,23,'1996-10-02','2016-08-03',25000,20,'O+'),
+    -> (110,'Yashu','yashu@gmail.com','tester',94456792,24,'1998-04-02','2018-05-03',25000,10,'A+'),
+    -> (111,'Chinmay','chinmay@gmail.com','analyst',97642792,21,'1998-07-14','2018-11-03',25000,20,'O+'),
+    -> (112,'Siri','siri@gmail.com','HR',99642792,24,'1996-08-12','2019-11-13',25000,40,'B+'),
+    -> (113,'Sanjay','sanjay@gmail.com','salesman',99662792,23,'1995-07-12','2018-10-13',22000,30,'A+'),
+    -> (114,'Varun','varun@gmail.com','software developer',99675792,22,'1997-07-12','2019-10-13',24000,20,'O+'),
+    -> (115,'Sujith','sujith@gmail.com','clerk',88675792,22,'1997-09-10','2019-12-13',20000,10,'B+');
+Query OK, 12 rows affected (0.05 sec)
+Records: 12  Duplicates: 0  Warnings: 0
+
+mysql> select * from employee_info;
++-----+---------+-------------------+--------------------+----------+------+------------+------------+--------+--------+------------+
+| id  | name    | emailId           | designation        | mobileno | age  | dob        | doj        | salary | deptid | bloodgroup |
++-----+---------+-------------------+--------------------+----------+------+------------+------------+--------+--------+------------+
+| 101 | Thanu   | thanu@gmail.com   | software developer | 89043638 |   22 | 1997-02-28 | 2019-10-06 |  30000 |     10 | O+         |
+| 102 | Anu     | Anu@gmail.com     | software developer | 94463638 |   21 | 1998-04-28 | 2019-03-08 |  30000 |     10 | O+         |
+| 103 | Manuoj  | Manoj@gmail.com   | salesman           | 93363638 |   25 | 1994-11-26 | 2017-04-06 |  20000 |     20 | A+         |
+| 104 | Banu    | banu@gmail.com    | clerk              | 83363638 |   24 | 1997-12-21 | 2015-03-05 |  10000 |     30 | AB+        |
+| 105 | Akash   | akash@gmail.com   | analyst            | 73363638 |   23 | 1998-08-03 | 2016-05-05 |  15000 |     40 | B+         |
+| 106 | Arav    | arav@gmail.com    | HR                 | 73363686 |   25 | 1994-08-03 | 2017-05-05 |  35000 |     30 | AB-        |
+| 107 | Chaman  | Chaman@gmail.com  | tester             | 73385386 |   22 | 1997-08-03 | 2019-05-03 |  18000 |     10 | B-         |
+| 108 | Nidhi   | nidhi@gmail.com   | salesman           | 73456792 |   23 | 1996-04-02 | 2017-05-03 |  20000 |     40 | O-         |
+| 109 | Namitha | namitha@gmail.com | clerk              | 94556792 |   23 | 1996-10-02 | 2016-08-03 |  25000 |     20 | O+         |
+| 110 | Yashu   | yashu@gmail.com   | tester             | 94456792 |   24 | 1998-04-02 | 2018-05-03 |  25000 |     10 | A+         |
+| 111 | Chinmay | chinmay@gmail.com | analyst            | 97642792 |   21 | 1998-07-14 | 2018-11-03 |  25000 |     20 | O+         |
+| 112 | Siri    | siri@gmail.com    | HR                 | 99642792 |   24 | 1996-08-12 | 2019-11-13 |  25000 |     40 | B+         |
+| 113 | Sanjay  | sanjay@gmail.com  | salesman           | 99662792 |   23 | 1995-07-12 | 2018-10-13 |  22000 |     30 | A+         |
+| 114 | Varun   | varun@gmail.com   | software developer | 99675792 |   22 | 1997-07-12 | 2019-10-13 |  24000 |     20 | O+         |
+| 115 | Sujith  | sujith@gmail.com  | clerk              | 88675792 |   22 | 1997-09-10 | 2019-12-13 |  20000 |     10 | B+         |
++-----+---------+-------------------+--------------------+----------+------+------------+------------+--------+--------+------------+
+15 rows in set (0.01 sec)
+**********************************************************************************************************
+30. WQT give temporary name for blood group column
+
+mysql> select id,name,bloodgroup as bg from employee_info;
++-----+---------+------+
+| id  | name    | bg   |
++-----+---------+------+
+| 101 | Thanu   | O+   |
+| 102 | Anu     | O+   |
+| 103 | Manuoj  | A+   |
+| 104 | Banu    | AB+  |
+| 105 | Akash   | B+   |
+| 106 | Arav    | AB-  |
+| 107 | Chaman  | B-   |
+| 108 | Nidhi   | O-   |
+| 109 | Namitha | O+   |
+| 110 | Yashu   | A+   |
+| 111 | Chinmay | O+   |
+| 112 | Siri    | B+   |
+| 113 | Sanjay  | A+   |
+| 114 | Varun   | O+   |
+| 115 | Sujith  | B+   |
++-----+---------+------+
+15 rows in set (0.03 sec)
+*****************************************************************************************
+31. WQTD
+mysql> select name,salary,designation,salary*12 from employee_info;
++---------+--------+--------------------+-----------+
+| name    | salary | designation        | salary*12 |
++---------+--------+--------------------+-----------+
+| Thanu   |  30000 | software developer |    360000 |
+| Anu     |  30000 | software developer |    360000 |
+| Manuoj  |  20000 | salesman           |    240000 |
+| Banu    |  10000 | clerk              |    120000 |
+| Akash   |  15000 | analyst            |    180000 |
+| Arav    |  35000 | HR                 |    420000 |
+| Chaman  |  18000 | tester             |    216000 |
+| Nidhi   |  20000 | salesman           |    240000 |
+| Namitha |  25000 | clerk              |    300000 |
+| Yashu   |  25000 | tester             |    300000 |
+| Chinmay |  25000 | analyst            |    300000 |
+| Siri    |  25000 | HR                 |    300000 |
+| Sanjay  |  22000 | salesman           |    264000 |
+| Varun   |  24000 | software developer |    288000 |
+| Sujith  |  20000 | clerk              |    240000 |
++---------+--------+--------------------+-----------+
+15 rows in set (0.02 sec)
+
+mysql> select name,salary,designation,salary*12 Annual_salary from employee_info;
++---------+--------+--------------------+---------------+
+| name    | salary | designation        | Annual_salary |
++---------+--------+--------------------+---------------+
+| Thanu   |  30000 | software developer |        360000 |
+| Anu     |  30000 | software developer |        360000 |
+| Manuoj  |  20000 | salesman           |        240000 |
+| Banu    |  10000 | clerk              |        120000 |
+| Akash   |  15000 | analyst            |        180000 |
+| Arav    |  35000 | HR                 |        420000 |
+| Chaman  |  18000 | tester             |        216000 |
+| Nidhi   |  20000 | salesman           |        240000 |
+| Namitha |  25000 | clerk              |        300000 |
+| Yashu   |  25000 | tester             |        300000 |
+| Chinmay |  25000 | analyst            |        300000 |
+| Siri    |  25000 | HR                 |        300000 |
+| Sanjay  |  22000 | salesman           |        264000 |
+| Varun   |  24000 | software developer |        288000 |
+| Sujith  |  20000 | clerk              |        240000 |
++---------+--------+--------------------+---------------+
+15 rows in set (0.00 sec)
+***************************************************************************************
+34. WQT give alias name for all the columns present in the employee table
+mysql> select id eid,name ename,emailId email,designation designatn,mobileno phno,age eage,dob edob,doj edoj,salary sal,deptid deptId,bloodgroup bg from employee_info;
++-----+---------+-------------------+--------------------+----------+------+------------+------------+-------+--------+------+
+| eid | ename   | email             | designatn          | phno     | eage | edob       | edoj       | sal   | deptId | bg   |
++-----+---------+-------------------+--------------------+----------+------+------------+------------+-------+--------+------+
+| 101 | Thanu   | thanu@gmail.com   | software developer | 89043638 |   22 | 1997-02-28 | 2019-10-06 | 30000 |     10 | O+   |
+| 102 | Anu     | Anu@gmail.com     | software developer | 94463638 |   21 | 1998-04-28 | 2019-03-08 | 30000 |     10 | O+   |
+| 103 | Manuoj  | Manoj@gmail.com   | salesman           | 93363638 |   25 | 1994-11-26 | 2017-04-06 | 20000 |     20 | A+   |
+| 104 | Banu    | banu@gmail.com    | clerk              | 83363638 |   24 | 1997-12-21 | 2015-03-05 | 10000 |     30 | AB+  |
+| 105 | Akash   | akash@gmail.com   | analyst            | 73363638 |   23 | 1998-08-03 | 2016-05-05 | 15000 |     40 | B+   |
+| 106 | Arav    | arav@gmail.com    | HR                 | 73363686 |   25 | 1994-08-03 | 2017-05-05 | 35000 |     30 | AB-  |
+| 107 | Chaman  | Chaman@gmail.com  | tester             | 73385386 |   22 | 1997-08-03 | 2019-05-03 | 18000 |     10 | B-   |
+| 108 | Nidhi   | nidhi@gmail.com   | salesman           | 73456792 |   23 | 1996-04-02 | 2017-05-03 | 20000 |     40 | O-   |
+| 109 | Namitha | namitha@gmail.com | clerk              | 94556792 |   23 | 1996-10-02 | 2016-08-03 | 25000 |     20 | O+   |
+| 110 | Yashu   | yashu@gmail.com   | tester             | 94456792 |   24 | 1998-04-02 | 2018-05-03 | 25000 |     10 | A+   |
+| 111 | Chinmay | chinmay@gmail.com | analyst            | 97642792 |   21 | 1998-07-14 | 2018-11-03 | 25000 |     20 | O+   |
+| 112 | Siri    | siri@gmail.com    | HR                 | 99642792 |   24 | 1996-08-12 | 2019-11-13 | 25000 |     40 | B+   |
+| 113 | Sanjay  | sanjay@gmail.com  | salesman           | 99662792 |   23 | 1995-07-12 | 2018-10-13 | 22000 |     30 | A+   |
+| 114 | Varun   | varun@gmail.com   | software developer | 99675792 |   22 | 1997-07-12 | 2019-10-13 | 24000 |     20 | O+   |
+| 115 | Sujith  | sujith@gmail.com  | clerk              | 88675792 |   22 | 1997-09-10 | 2019-12-13 | 20000 |     10 | B+   |
++-----+---------+-------------------+--------------------+----------+------+------------+------------+-------+--------+------+
+15 rows in set (0.01 sec)
+***********************************************************************************************************************
+DISTINCT
+35. WQTD the unique deptId from employee table
+
+mysql> select distinct deptId from employee_info;
++--------+
+| deptId |
++--------+
+|     10 |
+|     20 |
+|     30 |
+|     40 |
++--------+
+4 rows in set (0.03 sec)
+*********************************************************************************************************************************************************************************************
+36. wqtd unique values of desinatn as well as deptId
+
+mysql> select distinct deptid,designation from employee_info;
++--------+--------------------+
+| deptid | designation        |
++--------+--------------------+
+|     10 | software developer |
+|     20 | salesman           |
+|     30 | clerk              |
+|     40 | analyst            |
+|     30 | HR                 |
+|     10 | tester             |
+|     40 | salesman           |
+|     20 | clerk              |
+|     20 | analyst            |
+|     40 | HR                 |
+|     30 | salesman           |
+|     20 | software developer |
+|     10 | clerk              |
++--------+--------------------+
+13 rows in set (0.00 sec)
+***********************************************************************************************************************************************************************************************
+mysql> select distinct deptid,designation,age from employee_info;
++--------+--------------------+------+
+| deptid | designation        | age  |
++--------+--------------------+------+
+|     10 | software developer |   22 |
+|     10 | software developer |   21 |
+|     20 | salesman           |   25 |
+|     30 | clerk              |   24 |
+|     40 | analyst            |   23 |
+|     30 | HR                 |   25 |
+|     10 | tester             |   22 |
+|     40 | salesman           |   23 |
+|     20 | clerk              |   23 |
+|     10 | tester             |   24 |
+|     20 | analyst            |   21 |
+|     40 | HR                 |   24 |
+|     30 | salesman           |   23 |
+|     20 | software developer |   22 |
+|     10 | clerk              |   22 |
++--------+--------------------+------+
+15 rows in set (0.00 sec)
+********************************************************************************************
+35. wqtd 
+i) name and salary where salary is incremented by 5000.
+mysql> select name,salary+5000 addSal from employee_info;
++---------+--------+
+| name    | addSal |
++---------+--------+
+| Thanu   |  35000 |
+| Anu     |  35000 |
+| Manuoj  |  25000 |
+| Banu    |  15000 |
+| Akash   |  20000 |
+| Arav    |  40000 |
+| Chaman  |  23000 |
+| Nidhi   |  25000 |
+| Namitha |  30000 |
+| Yashu   |  30000 |
+| Chinmay |  30000 |
+| Siri    |  30000 |
+| Sanjay  |  27000 |
+| Varun   |  29000 |
+| Sujith  |  25000 |
++---------+--------+
+15 rows in set (0.02 sec)
+
+ii) name and salary where salary is decremented by 5000.
+mysql> select name,salary-5000 subSal from employee_info;
++---------+--------+
+| name    | subSal |
++---------+--------+
+| Thanu   |  25000 |
+| Anu     |  25000 |
+| Manuoj  |  15000 |
+| Banu    |   5000 |
+| Akash   |  10000 |
+| Arav    |  30000 |
+| Chaman  |  13000 |
+| Nidhi   |  15000 |
+| Namitha |  20000 |
+| Yashu   |  20000 |
+| Chinmay |  20000 |
+| Siri    |  20000 |
+| Sanjay  |  17000 |
+| Varun   |  19000 |
+| Sujith  |  15000 |
++---------+--------+
+15 rows in set (0.01 sec)
+
+iii) name and annual salary
+mysql> select name,salary*12  annualSal from employee_info;
++---------+-----------+
+| name    | annualSal |
++---------+-----------+
+| Thanu   |    360000 |
+| Anu     |    360000 |
+| Manuoj  |    240000 |
+| Banu    |    120000 |
+| Akash   |    180000 |
+| Arav    |    420000 |
+| Chaman  |    216000 |
+| Nidhi   |    240000 |
+| Namitha |    300000 |
+| Yashu   |    300000 |
+| Chinmay |    300000 |
+| Siri    |    300000 |
+| Sanjay  |    264000 |
+| Varun   |    288000 |
+| Sujith  |    240000 |
++---------+-----------+
+15 rows in set (0.00 sec)
+
+iv) name and per day salary
+
+mysql> select name,salary/30  divSal from employee_info;
++---------+--------------------+
+| name    | divSal             |
++---------+--------------------+
+| Thanu   |               1000 |
+| Anu     |               1000 |
+| Manuoj  |  666.6666666666666 |
+| Banu    |  333.3333333333333 |
+| Akash   |                500 |
+| Arav    | 1166.6666666666667 |
+| Chaman  |                600 |
+| Nidhi   |  666.6666666666666 |
+| Namitha |  833.3333333333334 |
+| Yashu   |  833.3333333333334 |
+| Chinmay |  833.3333333333334 |
+| Siri    |  833.3333333333334 |
+| Sanjay  |  733.3333333333334 |
+| Varun   |                800 |
+| Sujith  |  666.6666666666666 |
++---------+--------------------+
+15 rows in set (0.05 sec)
+***********************************************************************************************
+36. wqtd all the records excluding deptid 10
+
+mysql> select * from employee_info where deptid<>10;
++-----+---------+-------------------+--------------------+----------+------+------------+------------+--------+--------+------------+
+| id  | name    | emailId           | designation        | mobileno | age  | dob        | doj        | salary | deptid | bloodgroup |
++-----+---------+-------------------+--------------------+----------+------+------------+------------+--------+--------+------------+
+| 103 | Manuoj  | Manoj@gmail.com   | salesman           | 93363638 |   25 | 1994-11-26 | 2017-04-06 |  20000 |     20 | A+         |
+| 104 | Banu    | banu@gmail.com    | clerk              | 83363638 |   24 | 1997-12-21 | 2015-03-05 |  10000 |     30 | AB+        |
+| 105 | Akash   | akash@gmail.com   | analyst            | 73363638 |   23 | 1998-08-03 | 2016-05-05 |  15000 |     40 | B+         |
+| 106 | Arav    | arav@gmail.com    | HR                 | 73363686 |   25 | 1994-08-03 | 2017-05-05 |  35000 |     30 | AB-        |
+| 108 | Nidhi   | nidhi@gmail.com   | salesman           | 73456792 |   23 | 1996-04-02 | 2017-05-03 |  20000 |     40 | O-         |
+| 109 | Namitha | namitha@gmail.com | clerk              | 94556792 |   23 | 1996-10-02 | 2016-08-03 |  25000 |     20 | O+         |
+| 111 | Chinmay | chinmay@gmail.com | analyst            | 97642792 |   21 | 1998-07-14 | 2018-11-03 |  25000 |     20 | O+         |
+| 112 | Siri    | siri@gmail.com    | HR                 | 99642792 |   24 | 1996-08-12 | 2019-11-13 |  25000 |     40 | B+         |
+| 113 | Sanjay  | sanjay@gmail.com  | salesman           | 99662792 |   23 | 1995-07-12 | 2018-10-13 |  22000 |     30 | A+         |
+| 114 | Varun   | varun@gmail.com   | software developer | 99675792 |   22 | 1997-07-12 | 2019-10-13 |  24000 |     20 | O+         |
++-----+---------+-------------------+--------------------+----------+------+------------+------------+--------+--------+------------+
+10 rows in set (0.01 sec)
+
+mysql> select * from employee_info where deptid!=10;
++-----+---------+-------------------+--------------------+----------+------+------------+------------+--------+--------+------------+
+| id  | name    | emailId           | designation        | mobileno | age  | dob        | doj        | salary | deptid | bloodgroup |
++-----+---------+-------------------+--------------------+----------+------+------------+------------+--------+--------+------------+
+| 103 | Manuoj  | Manoj@gmail.com   | salesman           | 93363638 |   25 | 1994-11-26 | 2017-04-06 |  20000 |     20 | A+         |
+| 104 | Banu    | banu@gmail.com    | clerk              | 83363638 |   24 | 1997-12-21 | 2015-03-05 |  10000 |     30 | AB+        |
+| 105 | Akash   | akash@gmail.com   | analyst            | 73363638 |   23 | 1998-08-03 | 2016-05-05 |  15000 |     40 | B+         |
+| 106 | Arav    | arav@gmail.com    | HR                 | 73363686 |   25 | 1994-08-03 | 2017-05-05 |  35000 |     30 | AB-        |
+| 108 | Nidhi   | nidhi@gmail.com   | salesman           | 73456792 |   23 | 1996-04-02 | 2017-05-03 |  20000 |     40 | O-         |
+| 109 | Namitha | namitha@gmail.com | clerk              | 94556792 |   23 | 1996-10-02 | 2016-08-03 |  25000 |     20 | O+         |
+| 111 | Chinmay | chinmay@gmail.com | analyst            | 97642792 |   21 | 1998-07-14 | 2018-11-03 |  25000 |     20 | O+         |
+| 112 | Siri    | siri@gmail.com    | HR                 | 99642792 |   24 | 1996-08-12 | 2019-11-13 |  25000 |     40 | B+         |
+| 113 | Sanjay  | sanjay@gmail.com  | salesman           | 99662792 |   23 | 1995-07-12 | 2018-10-13 |  22000 |     30 | A+         |
+| 114 | Varun   | varun@gmail.com   | software developer | 99675792 |   22 | 1997-07-12 | 2019-10-13 |  24000 |     20 | O+         |
++-----+---------+-------------------+--------------------+----------+------+------------+------------+--------+--------+------------+
+10 rows in set (0.00 sec)
+
+
+mysql> select name,designation,mobileno,age from employee_info where salary>5000;
++---------+--------------------+----------+------+
+| name    | designation        | mobileno | age  |
++---------+--------------------+----------+------+
+| Thanu   | software developer | 89043638 |   22 |
+| Anu     | software developer | 94463638 |   21 |
+| Manuoj  | salesman           | 93363638 |   25 |
+| Banu    | clerk              | 83363638 |   24 |
+| Akash   | analyst            | 73363638 |   23 |
+| Arav    | HR                 | 73363686 |   25 |
+| Chaman  | tester             | 73385386 |   22 |
+| Nidhi   | salesman           | 73456792 |   23 |
+| Namitha | clerk              | 94556792 |   23 |
+| Yashu   | tester             | 94456792 |   24 |
+| Chinmay | analyst            | 97642792 |   21 |
+| Siri    | HR                 | 99642792 |   24 |
+| Sanjay  | salesman           | 99662792 |   23 |
+| Varun   | software developer | 99675792 |   22 |
+| Sujith  | clerk              | 88675792 |   22 |
++---------+--------------------+----------+------+
+15 rows in set (0.00 sec)
+
+mysql> select name,designation,mobileno,age from employee_info where salary<20000;
++--------+-------------+----------+------+
+| name   | designation | mobileno | age  |
++--------+-------------+----------+------+
+| Banu   | clerk       | 83363638 |   24 |
+| Akash  | analyst     | 73363638 |   23 |
+| Chaman | tester      | 73385386 |   22 |
++--------+-------------+----------+------+
+3 rows in set (0.00 sec)
+
+mysql> select salary from employee_info where salary<=12000;
++--------+
+| salary |
++--------+
+|  10000 |
++--------+
+1 row in set (0.00 sec)
+
+mysql> select salary from employee_info where salary>=12000;
++--------+
+| salary |
++--------+
+|  30000 |
+|  30000 |
+|  20000 |
+|  15000 |
+|  35000 |
+|  18000 |
+|  20000 |
+|  25000 |
+|  25000 |
+|  25000 |
+|  25000 |
+|  22000 |
+|  24000 |
+|  20000 |
++--------+
+14 rows in set (0.03 sec)
+
+******************************************************************************
+37. wqtd all the records who is working in deptid 20 only when salary is greater than 10000.
+
+mysql> select * from employee_info
+    -> where deptid=20 and salary>10000;
++-----+---------+-------------------+--------------------+----------+------+------------+------------+--------+--------+------------+
+| id  | name    | emailId           | designation        | mobileno | age  | dob        | doj        | salary | deptid | bloodgroup |
++-----+---------+-------------------+--------------------+----------+------+------------+------------+--------+--------+------------+
+| 103 | Manuoj  | Manoj@gmail.com   | salesman           | 93363638 |   25 | 1994-11-26 | 2017-04-06 |  20000 |     20 | A+         |
+| 109 | Namitha | namitha@gmail.com | clerk              | 94556792 |   23 | 1996-10-02 | 2016-08-03 |  25000 |     20 | O+         |
+| 111 | Chinmay | chinmay@gmail.com | analyst            | 97642792 |   21 | 1998-07-14 | 2018-11-03 |  25000 |     20 | O+         |
+| 114 | Varun   | varun@gmail.com   | software developer | 99675792 |   22 | 1997-07-12 | 2019-10-13 |  24000 |     20 | O+         |
++-----+---------+-------------------+--------------------+----------+------+------------+------------+--------+--------+------------+
+4 rows in set (0.00 sec)
+
+38. wqtd all the records who is working as salesman and dob is 1994
+
+mysql> select * from employee_info
+    -> where  designation = 'salesman' and dob='1994';
+Empty set, 2 warnings (0.00 sec)
+
+39.wqtd all the records of the employee whose salary is and designation is a analyst
+
+
+40. wqtd all the records of the employee whose deptid is 20 or 60; 
+
+mysql> select * from employee_info where deptid=20 or deptid=60;
++-----+---------+-------------------+--------------------+----------+------+------------+------------+--------+--------+------------+
+| id  | name    | emailId           | designation        | mobileno | age  | dob        | doj        | salary | deptid | bloodgroup |
++-----+---------+-------------------+--------------------+----------+------+------------+------------+--------+--------+------------+
+| 103 | Manuoj  | Manoj@gmail.com   | salesman           | 93363638 |   25 | 1994-11-26 | 2017-04-06 |  20000 |     20 | A+         |
+| 109 | Namitha | namitha@gmail.com | clerk              | 94556792 |   23 | 1996-10-02 | 2016-08-03 |  25000 |     20 | O+         |
+| 111 | Chinmay | chinmay@gmail.com | analyst            | 97642792 |   21 | 1998-07-14 | 2018-11-03 |  25000 |     20 | O+         |
+| 114 | Varun   | varun@gmail.com   | software developer | 99675792 |   22 | 1997-07-12 | 2019-10-13 |  24000 |     20 | O+         |
++-----+---------+-------------------+--------------------+----------+------+------------+------------+--------+--------+------------+
+4 rows in set (0.00 sec)
+
+41. wqtd name,sal whose is working as a tester or age is greater than 20
+
+mysql> select name,salary from employee_info where designation= 'tester' or age > 20;
++---------+--------+
+| name    | salary |
++---------+--------+
+| Thanu   |  30000 |
+| Anu     |  30000 |
+| Manuoj  |  20000 |
+| Banu    |  10000 |
+| Akash   |  15000 |
+| Arav    |  35000 |
+| Chaman  |  18000 |
+| Nidhi   |  20000 |
+| Namitha |  25000 |
+| Yashu   |  25000 |
+| Chinmay |  25000 |
+| Siri    |  25000 |
+| Sanjay  |  22000 |
+| Varun   |  24000 |
+| Sujith  |  20000 |
++---------+--------+
+15 rows in set (0.00 sec)
+
+42. wqtd the name of all the employees who is working as a hr in deptid 30 or wwho is working as a clerk where salary is greater than 10000
+
+mysql> select name from employee_info where (designation='hr' and deptid=30) or (designation='clerk' and salary>10000);
++---------+
+| name    |
++---------+
+| Arav    |
+| Namitha |
+| Sujith  |
++---------+
+3 rows in set (0.00 sec)
+
+43.  wqtd salary=10000 and designation software developer
+
+mysql> select * from employee_info where salary=10000 and designation ='software developer';
+Empty set (0.00 sec)
+
+44.wqtd all the records excluding the designation 'software developer'
+ysql> select * from employee_info where not designation='software developer';
++-----+---------+-------------------+-------------+----------+------+------------+------------+--------+--------+------------+
+| id  | name    | emailId           | designation | mobileno | age  | dob        | doj        | salary | deptid | bloodgroup |
++-----+---------+-------------------+-------------+----------+------+------------+------------+--------+--------+------------+
+| 103 | Manuoj  | Manoj@gmail.com   | salesman    | 93363638 |   25 | 1994-11-26 | 2017-04-06 |  20000 |     20 | A+         |
+| 104 | Banu    | banu@gmail.com    | clerk       | 83363638 |   24 | 1997-12-21 | 2015-03-05 |  10000 |     30 | AB+        |
+| 105 | Akash   | akash@gmail.com   | analyst     | 73363638 |   23 | 1998-08-03 | 2016-05-05 |  15000 |     40 | B+         |
+| 106 | Arav    | arav@gmail.com    | HR          | 73363686 |   25 | 1994-08-03 | 2017-05-05 |  35000 |     30 | AB-        |
+| 107 | Chaman  | Chaman@gmail.com  | tester      | 73385386 |   22 | 1997-08-03 | 2019-05-03 |  18000 |     10 | B-         |
+| 108 | Nidhi   | nidhi@gmail.com   | salesman    | 73456792 |   23 | 1996-04-02 | 2017-05-03 |  20000 |     40 | O-         |
+| 109 | Namitha | namitha@gmail.com | clerk       | 94556792 |   23 | 1996-10-02 | 2016-08-03 |  25000 |     20 | O+         |
+| 110 | Yashu   | yashu@gmail.com   | tester      | 94456792 |   24 | 1998-04-02 | 2018-05-03 |  25000 |     10 | A+         |
+| 111 | Chinmay | chinmay@gmail.com | analyst     | 97642792 |   21 | 1998-07-14 | 2018-11-03 |  25000 |     20 | O+         |
+| 112 | Siri    | siri@gmail.com    | HR          | 99642792 |   24 | 1996-08-12 | 2019-11-13 |  25000 |     40 | B+         |
+| 113 | Sanjay  | sanjay@gmail.com  | salesman    | 99662792 |   23 | 1995-07-12 | 2018-10-13 |  22000 |     30 | A+         |
+| 115 | Sujith  | sujith@gmail.com  | clerk       | 88675792 |   22 | 1997-09-10 | 2019-12-13 |  20000 |     10 | B+         |
++-----+---------+-------------------+-------------+----------+------+------------+------------+--------+--------+------------+
+12 rows in set (0.00 sec)
+
+45.wqtd all the employees excluding deptid 20 or 30
+
+mysql> select * from employee_info where not (deptid=20 or deptid=30);
++-----+--------+------------------+--------------------+----------+------+------------+------------+--------+--------+------------+
+| id  | name   | emailId          | designation        | mobileno | age  | dob        | doj        | salary | deptid | bloodgroup |
++-----+--------+------------------+--------------------+----------+------+------------+------------+--------+--------+------------+
+| 101 | Thanu  | thanu@gmail.com  | software developer | 89043638 |   22 | 1997-02-28 | 2019-10-06 |  30000 |     10 | O+         |
+| 102 | Anu    | Anu@gmail.com    | software developer | 94463638 |   21 | 1998-04-28 | 2019-03-08 |  30000 |     10 | O+         |
+| 105 | Akash  | akash@gmail.com  | analyst            | 73363638 |   23 | 1998-08-03 | 2016-05-05 |  15000 |     40 | B+         |
+| 107 | Chaman | Chaman@gmail.com | tester             | 73385386 |   22 | 1997-08-03 | 2019-05-03 |  18000 |     10 | B-         |
+| 108 | Nidhi  | nidhi@gmail.com  | salesman           | 73456792 |   23 | 1996-04-02 | 2017-05-03 |  20000 |     40 | O-         |
+| 110 | Yashu  | yashu@gmail.com  | tester             | 94456792 |   24 | 1998-04-02 | 2018-05-03 |  25000 |     10 | A+         |
+| 112 | Siri   | siri@gmail.com   | HR                 | 99642792 |   24 | 1996-08-12 | 2019-11-13 |  25000 |     40 | B+         |
+| 115 | Sujith | sujith@gmail.com | clerk              | 88675792 |   22 | 1997-09-10 | 2019-12-13 |  20000 |     10 | B+         |
++-----+--------+------------------+--------------------+----------+------+------------+------------+--------+--------+------------+
+8 rows in set (0.00 sec)
+
+46. wqtd all the employee details excluding salesman who all are in dept no 40 
+
+mysql> select * from employee_info where not (designation='salesman' and deptid=40);
++-----+---------+-------------------+--------------------+----------+------+------------+------------+--------+--------+------------+
+| id  | name    | emailId           | designation        | mobileno | age  | dob        | doj        | salary | deptid | bloodgroup |
++-----+---------+-------------------+--------------------+----------+------+------------+------------+--------+--------+------------+
+| 101 | Thanu   | thanu@gmail.com   | software developer | 89043638 |   22 | 1997-02-28 | 2019-10-06 |  30000 |     10 | O+         |
+| 102 | Anu     | Anu@gmail.com     | software developer | 94463638 |   21 | 1998-04-28 | 2019-03-08 |  30000 |     10 | O+         |
+| 103 | Manuoj  | Manoj@gmail.com   | salesman           | 93363638 |   25 | 1994-11-26 | 2017-04-06 |  20000 |     20 | A+         |
+| 104 | Banu    | banu@gmail.com    | clerk              | 83363638 |   24 | 1997-12-21 | 2015-03-05 |  10000 |     30 | AB+        |
+| 105 | Akash   | akash@gmail.com   | analyst            | 73363638 |   23 | 1998-08-03 | 2016-05-05 |  15000 |     40 | B+         |
+| 106 | Arav    | arav@gmail.com    | HR                 | 73363686 |   25 | 1994-08-03 | 2017-05-05 |  35000 |     30 | AB-        |
+| 107 | Chaman  | Chaman@gmail.com  | tester             | 73385386 |   22 | 1997-08-03 | 2019-05-03 |  18000 |     10 | B-         |
+| 109 | Namitha | namitha@gmail.com | clerk              | 94556792 |   23 | 1996-10-02 | 2016-08-03 |  25000 |     20 | O+         |
+| 110 | Yashu   | yashu@gmail.com   | tester             | 94456792 |   24 | 1998-04-02 | 2018-05-03 |  25000 |     10 | A+         |
+| 111 | Chinmay | chinmay@gmail.com | analyst            | 97642792 |   21 | 1998-07-14 | 2018-11-03 |  25000 |     20 | O+         |
+| 112 | Siri    | siri@gmail.com    | HR                 | 99642792 |   24 | 1996-08-12 | 2019-11-13 |  25000 |     40 | B+         |
+| 113 | Sanjay  | sanjay@gmail.com  | salesman           | 99662792 |   23 | 1995-07-12 | 2018-10-13 |  22000 |     30 | A+         |
+| 114 | Varun   | varun@gmail.com   | software developer | 99675792 |   22 | 1997-07-12 | 2019-10-13 |  24000 |     20 | O+         |
+| 115 | Sujith  | sujith@gmail.com  | clerk              | 88675792 |   22 | 1997-09-10 | 2019-12-13 |  20000 |     10 | B+         |
++-----+---------+-------------------+--------------------+----------+------+------------+------------+--------+--------+------------+
+14 rows in set (0.00 sec)
+47. wqtd all the employee details who is working as a salesman for dept no 20 or 30.
+mysql> select * from employee_info where designation ='salesman' and ( deptid=20 or deptid=30);
++-----+--------+------------------+-------------+----------+------+------------+------------+--------+--------+------------+
+| id  | name   | emailId          | designation | mobileno | age  | dob        | doj        | salary | deptid | bloodgroup |
++-----+--------+------------------+-------------+----------+------+------------+------------+--------+--------+------------+
+| 103 | Manuoj | Manoj@gmail.com  | salesman    | 93363638 |   25 | 1994-11-26 | 2017-04-06 |  20000 |     20 | A+         |
+| 113 | Sanjay | sanjay@gmail.com | salesman    | 99662792 |   23 | 1995-07-12 | 2018-10-13 |  22000 |     30 | A+         |
++-----+--------+------------------+-------------+----------+------+------------+------------+--------+--------+------------+
+2 rows in set (0.01 sec)
+48. wqtd all the employee who is working in dept no 20 only if their salary is greater than 10000 and less than 25000
+
+mysql> select * from employee_info where deptid=20 and (salary >=10000 and salary <=25000);
++-----+---------+-------------------+--------------------+----------+------+------------+------------+--------+--------+------------+
+| id  | name    | emailId           | designation        | mobileno | age  | dob        | doj        | salary | deptid | bloodgroup |
++-----+---------+-------------------+--------------------+----------+------+------------+------------+--------+--------+------------+
+| 103 | Manuoj  | Manoj@gmail.com   | salesman           | 93363638 |   25 | 1994-11-26 | 2017-04-06 |  20000 |     20 | A+         |
+| 109 | Namitha | namitha@gmail.com | clerk              | 94556792 |   23 | 1996-10-02 | 2016-08-03 |  25000 |     20 | O+         |
+| 111 | Chinmay | chinmay@gmail.com | analyst            | 97642792 |   21 | 1998-07-14 | 2018-11-03 |  25000 |     20 | O+         |
+| 114 | Varun   | varun@gmail.com   | software developer | 99675792 |   22 | 1997-07-12 | 2019-10-13 |  24000 |     20 | O+         |
++-----+---------+-------------------+--------------------+----------+------+------------+------------+--------+--------+------------+
+4 rows in set (0.02 sec)
+
+49.wqtd all the records  who is working as a software developer and dob is 1994
+
+mysql> select * from employee_info
+    -> where designation='software developer' and (dob>='1994-01-01' and dob<='1994-12-31');
+Empty set (0.00 sec)
+
+
+
+
+
+

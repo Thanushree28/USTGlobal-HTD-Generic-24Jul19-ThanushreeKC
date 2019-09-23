@@ -1,0 +1,243 @@
+ROLLBACK
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| company            |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sample             |
+| test               |
+| ust_global         |
+| world              |
++--------------------+
+9 rows in set (0.00 sec)
+
+mysql> use ust_global;
+Database changed
+mysql> show tables;
++----------------------+
+| Tables_in_ust_global |
++----------------------+
+| dept_info            |
+| empdesg              |
+| empdetails           |
+| employee_info        |
+| student              |
+| student_details      |
++----------------------+
+6 rows in set (0.00 sec)
+
+mysql> select * from employee_info;
++-----+-----------+-------------------+--------------------+----------+------+------------+------------+--------+--------+------------+
+| id  | name      | emailId           | designation        | mobileno | age  | dob        | doj        | salary | deptid | bloodgroup |
++-----+-----------+-------------------+--------------------+----------+------+------------+------------+--------+--------+------------+
+| 101 | Thanu     | thanu@gmail.com   | software developer | 89043638 |   22 | 1997-02-28 | 2019-10-06 |  30000 |     10 | O+         |
+| 102 | Anu       | Anu@gmail.com     | software developer | 94463638 |   21 | 1998-04-28 | 2019-03-08 |  30000 |     10 | O+         |
+| 103 | deekshith | Manoj@gmail.com   | salesman           | 93363638 |   25 | 1994-11-26 | 2017-04-06 |  20000 |     20 | A+         |
+| 104 | Banu      | banu@gmail.com    | clerk              | 83363638 |   24 | 1997-12-21 | 2015-03-05 |  10000 |     30 | AB+        |
+| 105 | Akash     | akash@gmail.com   | analyst            | 73363638 |   23 | 1998-08-03 | 2016-05-05 |  15000 |     40 | B+         |
+| 106 | Arav      | arav@gmail.com    | HR                 | 73363686 |   25 | 1994-08-03 | 2017-05-05 |  35000 |     30 | AB-        |
+| 107 | Chaman    | Chaman@gmail.com  | tester             | 73385386 |   22 | 1997-08-03 | 2019-05-03 |  18000 |     10 | B-         |
+| 108 | Nidhi     | nidhi@gmail.com   | salesman           | 73456792 |   23 | 1996-04-02 | 2017-05-03 |  20000 |     40 | O-         |
+| 109 | Namitha   | namitha@gmail.com | clerk              | 94556792 |   23 | 1996-10-02 | 2016-08-03 |  25000 |     20 | O+         |
+| 110 | Yashu     | yashu@gmail.com   | tester             | 94456792 |   24 | 1998-04-02 | 2018-05-03 |  25000 |     10 | A+         |
+| 111 | Chinmay   | chinmay@gmail.com | analyst            | 97642792 |   21 | 1998-07-14 | 2018-11-03 |  25000 |     20 | O+         |
+| 112 | Siri      | siri@gmail.com    | HR                 | 99642792 |   24 | 1996-08-12 | 2019-11-13 |  25000 |     40 | B+         |
+| 113 | Sanjay    | sanjay@gmail.com  | salesman           | 99662792 |   23 | 1995-07-12 | 2018-10-13 |  22000 |     30 | A+         |
+| 114 | Varun     | varun@gmail.com   | software developer | 99675792 |   22 | 1997-07-12 | 2019-10-13 |  24000 |     20 | O+         |
+| 115 | Sujith    | sujith@gmail.com  | clerk              | 88675792 |   22 | 1997-09-10 | 2019-12-13 |  20000 |     10 | B+         |
++-----+-----------+-------------------+--------------------+----------+------+------------+------------+--------+--------+------------+
+15 rows in set (0.00 sec)
+
+mysql> select * from dept_info;
++--------+------------+-----------+
+| deptid | dname      | location  |
++--------+------------+-----------+
+|     10 | accounting | banglore  |
+|     20 | research   | pune      |
+|     30 | sales      | new delhi |
+|     40 | operation  | chennai   |
+|     50 | admin      | mumbai    |
+|     60 | NULL       | goa       |
++--------+------------+-----------+
+6 rows in set (0.00 sec)
+
+mysql> insert into dept_info values(70,'HR','mysore');
+Query OK, 1 row affected (0.06 sec)
+
+mysql> select * from dept_info;
++--------+------------+-----------+
+| deptid | dname      | location  |
++--------+------------+-----------+
+|     10 | accounting | banglore  |
+|     20 | research   | pune      |
+|     30 | sales      | new delhi |
+|     40 | operation  | chennai   |
+|     50 | admin      | mumbai    |
+|     60 | NULL       | goa       |
+|     70 | HR         | mysore    |
++--------+------------+-----------+
+7 rows in set (0.00 sec)
+
+mysql> rollback;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> select * from dept_info;
++--------+------------+-----------+
+| deptid | dname      | location  |
++--------+------------+-----------+
+|     10 | accounting | banglore  |
+|     20 | research   | pune      |
+|     30 | sales      | new delhi |
+|     40 | operation  | chennai   |
+|     50 | admin      | mumbai    |
+|     60 | NULL       | goa       |
+|     70 | HR         | mysore    |
++--------+------------+-----------+
+7 rows in set (0.00 sec)
+
+mysql> set autocommit = 0;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> insert into dept_info values(80,'manager','mangalore');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from dept_info;
++--------+------------+-----------+
+| deptid | dname      | location  |
++--------+------------+-----------+
+|     10 | accounting | banglore  |
+|     20 | research   | pune      |
+|     30 | sales      | new delhi |
+|     40 | operation  | chennai   |
+|     50 | admin      | mumbai    |
+|     60 | NULL       | goa       |
+|     70 | HR         | mysore    |
+|     80 | manager    | mangalore |
++--------+------------+-----------+
+8 rows in set (0.00 sec)
+
+mysql> rollback;
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> select * from dept_info;
++--------+------------+-----------+
+| deptid | dname      | location  |
++--------+------------+-----------+
+|     10 | accounting | banglore  |
+|     20 | research   | pune      |
+|     30 | sales      | new delhi |
+|     40 | operation  | chennai   |
+|     50 | admin      | mumbai    |
+|     60 | NULL       | goa       |
+|     70 | HR         | mysore    |
++--------+------------+-----------+
+7 rows in set (0.00 sec)
+**************************************************************************************************
+COMMIT
+
+mysql> update dept_info set dname = 'manager' where deptid=70;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> commit;
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> select * from dept_info;
++--------+------------+-----------+
+| deptid | dname      | location  |
++--------+------------+-----------+
+|     10 | accounting | banglore  |
+|     20 | research   | pune      |
+|     30 | sales      | new delhi |
+|     40 | operation  | chennai   |
+|     50 | admin      | mumbai    |
+|     60 | NULL       | goa       |
+|     70 | manager    | mysore    |
++--------+------------+-----------+
+7 rows in set (0.00 sec)
+
+mysql> rollback;				//changes wont happen because it is committed to the database
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from dept_info;
++--------+------------+-----------+
+| deptid | dname      | location  |
++--------+------------+-----------+
+|     10 | accounting | banglore  |
+|     20 | research   | pune      |
+|     30 | sales      | new delhi |
+|     40 | operation  | chennai   |
+|     50 | admin      | mumbai    |
+|     60 | NULL       | goa       |
+|     70 | manager    | mysore    |
++--------+------------+-----------+
+7 rows in set (0.00 sec)
+****************************************************************************************************************
+SAVE POINT
+
+mysql> savepoint a;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> insert into dept_info values(90,'clerk','mangalore');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from dept_info;
++--------+------------+-----------+
+| deptid | dname      | location  |
++--------+------------+-----------+
+|     10 | accounting | banglore  |
+|     20 | research   | pune      |
+|     30 | sales      | new delhi |
+|     40 | operation  | chennai   |
+|     50 | admin      | mumbai    |
+|     60 | NULL       | goa       |
+|     70 | manager    | mysore    |
+|     90 | clerk      | mangalore |
++--------+------------+-----------+
+8 rows in set (0.00 sec)
+
+mysql> savepoint b;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> delete from dept_info where deptid = 70;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from dept_info;
++--------+------------+-----------+
+| deptid | dname      | location  |
++--------+------------+-----------+
+|     10 | accounting | banglore  |
+|     20 | research   | pune      |
+|     30 | sales      | new delhi |
+|     40 | operation  | chennai   |
+|     50 | admin      | mumbai    |
+|     60 | NULL       | goa       |
+|     90 | clerk      | mangalore |
++--------+------------+-----------+
+7 rows in set (0.00 sec)
+
+mysql> rollback to a;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from dept_info;
++--------+------------+-----------+
+| deptid | dname      | location  |
++--------+------------+-----------+
+|     10 | accounting | banglore  |
+|     20 | research   | pune      |
+|     30 | sales      | new delhi |
+|     40 | operation  | chennai   |
+|     50 | admin      | mumbai    |
+|     60 | NULL       | goa       |
+|     70 | manager    | mysore    |
++--------+------------+-----------+
+7 rows in set (0.00 sec)
+
+mysql> rollback to b;
+ERROR 1305 (42000): SAVEPOINT b does not exist
+************************************************************************************************
