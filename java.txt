@@ -1,0 +1,250 @@
+Q. History of java.
+
+	a) Oak ( 1995-96).
+	b) Developed by James gosling in sun microsystem.
+	c) java is object oriented programing language.
+***********************************************************************************************************************************************************************
+Q. Editions
+
+	a) java Standard Edition(SE).   --> Develop standalone application.
+	b) java Micro Edition   (ME).   --> Small size device ex: calculator.
+	c) java Enterprise Edition(EE). --> Organization,bussiness purpose.
+
+***********************************************************************************************************************************************************************
+Q. Application
+	a) Stand alone application.
+	b) Web Application.
+
+***********************************************************************************************************************************************************************
+Q. Why java so popular ?.
+
+	1) java is very easy to learn.
+	2) java has 1000(lot of methods) methods which is difficult to remember.(either it can be taken as advantage or disadvantage).
+	3) java is platform independent(once it is complied it can work in any of the operatig system).i.e wtite once use 'N' number of times.
+
+***********************************************************************************************************************************************************************
+Q. Developemnt of any of the application we should follow the following steps ?.
+
+	1) First we write the source code present in source file.
+	2) To make that source file as java source file then we have to save with an extension .java i.e( source.java).
+	3) Before .java file executes file must be complied i.e javac checks the syntax(rules). java complier chcks the syntactical error.
+	4) Command for compiling .java file we use (javac src.java).
+	5) I/P to the java compiler was .java and O/P will be .class
+	6) To execute that .class file we have command ( java classname).
+	7) Whole java works on the concept of virtual(imagination,not real) machine. ie. JVM(java virtual machine).
+	8) JRE is an Application ,it enables to create JVM ,in that machine we are able run .class file
+	9) .class file can be run in any of the Operating system that have JRE.
+	10) Inside JVM  we have JIT(Just in time compiler, which convert byte codes to binary codes).
+	11) .class file contain byte code( It is a kind a of language neither understand by humans nor system). JVM can understand the byte code.
+	12) JVM acts as an interpreter.
+	13) Byte code is reason for platform independancy.
+	14) JIT, it converts byte code into machine understantable language ie binary language.
+
+**********************************************************************************************************************************************************************
+Q. Working flow of java Program.
+
+
+		-------	  .java		-------	 .class(ready for execution)		
+		-------   ----------> 	-------    -----------------------------> JVM --> JRE
+		-------	 		-------	                                  JIT
+		src.java		javac
+
+					a)checks syntax
+
+					 if(syntax correct)
+					{
+					 s.o.p("generate .class file");
+					}
+					else{
+					s.o.p("throws an compile time error");
+					}
+
+**********************************************************************************************************************************************************************
+Q. java program
+
+	Two parts:
+		a) Declaration.
+		b) Defination.
+
+*********************************************************************************************************************************************************************
+Q. Writing a program we use either
+
+	a) class.
+		public class classname
+					{ 
+					  // statements (body, block, definition) }
+						                                   
+	b) interface.
+
+**********************************************************************************************************************************************************************
+Q. Basic program
+
+	a) If we want to make changes in the .java file again we have to compile i then only it reflect the changes we made in the .java file
+		
+	public class HelloJava{
+		public static void main(String[] args) {
+		System.out.println("Hello Java");
+		System.out.println("Hello World");
+		}
+	}
+
+**********************************************************************************************************************************************************************
+Q. Why java is called as Object oriented programming language ?
+
+ 	a) Objects are elements of a program that has some DATA, which is also known as STATES.
+	b) Objects also has BEHAVIORS which means they can perform certain operation. Those behavior in java is called as METHODS.
+
+**********************************************************************************************************************************************************************
+Q. Keywords
+
+	1) Keywords are the words which has pre-defined meaning inside a programming language.
+	2) Java is case sensitive language.
+	3) 50 keywords in java. But we have 3 literals(True,False etc) they are also called as keywords. Therefore we have 53 keywords. 
+
+**********************************************************************************************************************************************************************
+Q. Identifiers
+
+	a) Identifiers are the name given to the variables, class and methods.(Name given to components/Elements of a program)
+	b) RULES to follow when we are creating an identifier:
+
+		1) It should starts with alphabets or a letter.
+		2) It can't start from a digit.
+		3) After the first character it can starts from a digit. Hence it is Alphanumeric.
+		4) Identifiers are also case sensitive.
+		5) Keywords can not be used as identifiers.
+		6) _ and $ are the only two special characters can be allowed.
+		7) spaces are not allowd between identifiers when we have two or more identifiers.
+
+*********************************************************************************************************************************************************************
+Q. Note
+
+	a) If a class is public then you should save that file with same name as class name.
+	b) If we want to execute/Run the java program JRE is enough.
+	c) If we want to develope an application JDK is needed.
+	d) Java is a strongly typed language.
+
+*********************************************************************************************************************************************************************
+Q. Variables
+
+	a) It is piece of memory that has certain name, So we can store certain DATA in a variable.
+	b) Named memory location to store the DATA.
+	c) Every variable should have data type.
+
+*********************************************************************************************************************************************************************
+Q. Data Type
+
+	a) Data type is nothing but it is a type of data which specifies what type of data is a variable is holding.
+	b) Data types are classified into two types namely:
+
+		i)  Primittive Data type.
+		ii) Refference Data type.
+
+	i)  Primittive Data type: A data type which is defined by the language is called as Primittive Data type.
+
+		a) Java has 8 primittive data types(out of 8 data types 6 were used for numbers).
+
+			1) byte data type: 
+				a) It can contain numeric value.
+				b) size  :  8 bits(1 byte).
+				c) Range : -128 to 127.
+			
+			2) short data type:
+				a) It can contain numeric value.
+				b) size  : 2 bytes.
+				c) Range : -32768 to 32767
+
+			3) integer data type:
+				a) It can contain numeric value.
+				b) size   : 4 bytes.
+				c) Range  : 2 billion aprox.
+				d) Example: int a=10;
+
+			
+			4) long data type:
+				a) It can contain numeric value.
+				b) size  : 8 bytes.
+				c) Range : 9 billion aprox.
+
+			5) double data type:
+				a) It can contain numeric value with decimal point value.
+				b) decimal point of double can hold  more than 6 digits (max:16).
+				c) Example : double d=1.123456789
+				d) size    : 8 bytes.
+				
+			6) float data type:
+				a) It can contain numeric value with decimal point value.
+				b) decimal point of float can hold  6 or 7 digits.
+				c) example : float f=1.234567f
+				d) size    : 4 bytes.
+			
+			7) character data type(literals).
+				a) It can take only single character.
+				b) It should be wriiten in single quotes.
+				c) Example: char c='A';
+
+			8) Boolean data type(literals).
+				a) It can take the value as true or false.
+				d) Its size is not defined.
+
+	EXAMPLE:
+
+		public class Sample123{
+	 		public static void main(String[] args) {
+			byte b=127;
+			short s =32767;
+			float f=1.123456789f;
+			double d=1.1234567891234567891;
+			char c1='A';
+			boolean bn=true;
+			char c3='a';
+			//char c2='AB'; (throws an error it must of single character)
+		 	// char c4=a;  (error: should be in single code).
+			System.out.println(b);
+			System.out.println(s);
+			System.out.println(f);
+			System.out.println(d);
+			System.out.println(c1);
+			//System.out.println(c2);
+			System.out.println(c3);
+			System.out.println(bn); 		
+		        }  }	
+
+***********************************************************************************************************************************************************************		
+				
+
+
+
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
