@@ -1,0 +1,71 @@
+div{
+    margin-top: 100px;
+    margin-left: 100px;
+   }
+   span{
+       display:inline-block;
+       margin: 8px;
+       box-shadow: 0 0 15px black;
+       padding:20px 25px;
+       animation:movement 1s infinite linear;
+}
+@keyframes movement{
+    0%{
+        transform:translateX(0px);
+    }
+    50%{transform:translateX(100px)
+    }
+    100%{
+        transform:translateX(0px);
+    }
+}
+span:nth-child(1){
+    background:linear-gradient(45deg,white,blue);
+    animation-delay:0.1s;
+    box-shadow:0px 10px 15px black;
+    }
+span:nth-child(2){
+    background:linear-gradient(45deg,white,rgb(255, 0, 0));
+    animation-delay:0.2s;
+    box-shadow:0px 10px 15px black;
+    }
+span:nth-child(3){
+    background:linear-gradient(45deg,white,rgb(45, 45, 201));
+    animation-delay:0.3s;
+    box-shadow:0px 10px 15px black;
+    }
+span:nth-child(4){
+    background:linear-gradient(45deg,white,rgb(255, 136, 0));
+    animation-delay:0.4s;
+    box-shadow:0px 10px 15px black;
+    }
+    span:nth-child(5){
+        background:linear-gradient(45deg,white,rgb(179, 255, 0));
+        animation-delay:0.5s;
+        box-shadow:0px 10px 15px black;
+        }  
+        span:nth-child(6){
+            background:linear-gradient(45deg,white,rgb(164, 206, 47));
+            animation-delay:0.6s;
+            box-shadow:0px 10px 15px black;
+            } 
+            span:nth-child(7){
+                background:linear-gradient(45deg,white,rgb(228, 68, 28));
+                animation-delay:0.7s;
+                box-shadow:0px 10px 15px black;
+                } 
+                span:nth-child(8){
+                    background:linear-gradient(45deg,white,rgb(52, 190, 172));
+                    animation-delay:0.8s;
+                    box-shadow:0px 10px 15px black;
+                    }
+                    span:nth-child(9){
+                        background:linear-gradient(45deg,white,rgb(235, 41, 193));
+                        animation-delay:0.9s;
+                        box-shadow:0px 10px 15px black;
+                        }
+                        span:nth-child(10){
+                            background:linear-gradient(45deg,white,rgb(0, 255, 34));
+                            animation-delay:0.10s;
+                            box-shadow:0px 10px 15px black;
+                            }
